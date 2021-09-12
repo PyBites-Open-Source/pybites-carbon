@@ -33,8 +33,7 @@ Examples:
 1. Make a hello world snippet carbon image:
 
 ```
-$
-python script.py -s 'print("hello world")'
+$ python script.py -s 'print("hello world")'
 ```
 
 Resulting image:
