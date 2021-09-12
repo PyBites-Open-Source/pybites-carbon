@@ -41,10 +41,10 @@ Resulting image:
 
 ![image from string](assets/image-from-string.png)
 
-2. Make a code image of the `script.py` file in this repo:
+2. Make a code image of a file, let's pick a FastAPI app I am working on:
 
 ```
-$ python script.py -f script.py
+python script.py -f /Users/bbelderbos/code/infinite-scroll/main.py
 ```
 
 Resulting image:
@@ -53,9 +53,7 @@ Resulting image:
 
 3. Copying the following lines to the clipboard:
 
-OK that last image was bit long, but it works for any length of file of course.
-
-However what if you want to make an image on the fly from what's under your clipboard?
+Here is my favorite feature: make an image from code I have currently on my OS clipboard (thanks `pyperclip`):
 
 Try it out, copy this code:
 
