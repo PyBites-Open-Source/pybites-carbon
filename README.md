@@ -25,45 +25,45 @@ Examples:
 
 1. Make a hello world snippet carbon image:
 
-```
-$ python script.py -s 'print("hello world")'
-```
+	```
+	$ python script.py -s 'print("hello world")'
+	```
 
-Resulting image:
+	Resulting image:
 
-![image from string](assets/image-from-string.png)
+	![image from string](assets/image-from-string.png)
 
-2. Make a code image of a file, let's pick a FastAPI app I am working on:
+2. Make a code image of a file, let's pick a [FastAPI](https://fastapi.tiangolo.com/) app I am working on:
 
-```
-python script.py -f /Users/bbelderbos/code/infinite-scroll/main.py
-```
+	```
+	python script.py -f /Users/bbelderbos/code/infinite-scroll/main.py
+	```
 
-Resulting image:
+	Resulting image:
 
-![image from file](assets/image-from-file.png)
+	![image from file](assets/image-from-file.png)
 
 3. Copying the following lines to the clipboard:
 
-Here is my favorite feature: make an image from code I have currently on my OS clipboard (thanks `pyperclip`):
+	Here is my favorite feature: make an image from code I have currently on my OS clipboard (thanks `pyperclip`):
 
-Try it out, copy this code:
+	Try it out, copy this code:
 
-```
-from time import sleep
+	```
+	from time import sleep
 
-sleep(2)
-```
+	sleep(2)
+	```
 
-Then run the script with `-c`:
+	Then run the script with `-c`:
 
-```
-$ python script.py -c
-```
+	```
+	$ python script.py -c
+	```
 
-Resulting image:
+	Resulting image:
 
-![image from clipboard](assets/image-from-clipboard.png)
+	![image from clipboard](assets/image-from-clipboard.png)
 
 ## Setup
 
@@ -83,8 +83,8 @@ Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites]
 
 Future plans / TODOs:
 
-- Create YouTube training video about the code (`selenium` and `argparse`).
+- Create a [PyBites YouTube training video](https://www.youtube.com/channel/UCBn-uKDGsRBfcB0lQeOB_gA) about the code (`selenium` and `argparse`).
 
 - Support passing other font types and background colors so we can also use it for [PyBites Career and Mindset tips](https://codechalleng.es/tips).
 
-- Build an API service around this.
+- Could build an API service around this ...
