@@ -12,10 +12,10 @@ CARBON_URL = "https://carbon.now.sh?l={language}&code={code}"
 CHROMEDRIVER_PATH = os.environ["CHROMEDRIVER_PATH"]
 
 
-def create_code_image(code: str, language: str):
+def create_code_image(code: str, language: str, headless: bool = True):
     """Generate a beautiful Carbon code image"""
     options = Options()
-    options.headless = True
+    options.headless = headless
     with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
         url = CARBON_URL.format(code=code, language=language)
         driver.get(url)
@@ -38,6 +38,10 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l", "--language", type=str, default="python", help="Code string"
     )
+    parser.add_argument(
+        "-b", "--browser", action="store_true", default=False,
+        help="Run Selenium in interactive (not headless) mode"
+    )
 
     def _get_code(args):
         """
@@ -56,4 +60,4 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     code = _get_code(args)
-    create_code_image(code, args.language)
+    create_code_image(code, args.language, headless=not args.browser)

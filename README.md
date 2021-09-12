@@ -6,7 +6,7 @@ You can load in code from a file, the clipboard or a snippet:
 
 ```
 $ python script.py -h
-usage: script.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE]
+usage: script.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-b]
 
 Create a carbon code image
 
@@ -18,13 +18,14 @@ optional arguments:
                         Code snippet
   -l LANGUAGE, --language LANGUAGE
                         Code string
+  -b, --browser         Run Selenium in interactive (not headless) mode
 ```
 
 Note that these are mutually exclusive:
 
 ```
 $ python script.py -c -f script.py
-usage: script.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE]
+usage: script.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-b]
 script.py: error: argument -f/--file: not allowed with argument -c/--clipboard
 ```
 
