@@ -38,7 +38,7 @@ if __name__ == "__main__":
     )
     group.add_argument("-s", "--snippet", type=str, help="Code snippet")
     parser.add_argument(
-        "-l", "--language", type=str, default="python", help="Code string"
+        "-l", "--language", type=str, default="python", help="Programming language"
     )
     parser.add_argument(
         "-b", "--browser", action="store_true", default=False,
