@@ -53,20 +53,19 @@ Resulting image:
 
 3. Copying the following lines to the clipboard:
 
+OK that last image was bit long, but it works for any length of file of course.
+
+However what if you want to make an image on the fly from what's under your clipboard?
+
+Try it out, copy this code:
+
 ```
-import argparse
+from time import sleep
 
-parser = argparse.ArgumentParser(description="Create a carbon code image")
-
-group = parser.add_mutually_exclusive_group(required=True)
-group.add_argument("-f", "--file", type=str, help="File with code")
-group.add_argument(
-    "-c", "--clipboard", action="store_true", help="Use code on clipboard"
-)
-group.add_argument("-s", "--snippet", type=str, help="Code snippet")
+sleep(2)
 ```
 
-Now make a image from what is on the clipboard:
+Then run the script with `-c`:
 
 ```
 $ python script.py -c
