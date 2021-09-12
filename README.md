@@ -107,6 +107,6 @@ Future plans / TODOs:
 
 - Create a [PyBites YouTube training video](https://www.youtube.com/channel/UCBn-uKDGsRBfcB0lQeOB_gA) about the code (`selenium` and `argparse`).
 
-- Support passing other font types and background colors so we can also use it for [PyBites Career and Mindset tips](https://codechalleng.es/tips).
+- Support passing other font types and background colors so we can also use it for our weekly [PyBites Career and Mindset tips](https://codechalleng.es/tips).
 
 - Could build an API service around this ...
