@@ -43,7 +43,7 @@ if __name__ == "__main__":
         help="Run Selenium in interactive (not headless) mode"
     )
 
-    def _get_code(args):
+    def _get_code(args: argparse.Namespace) -> str:
         """
         Argparse's add_mutually_exclusive_group already guaranteers
         we get one of clipboard, file or snippet
