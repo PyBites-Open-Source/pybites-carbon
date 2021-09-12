@@ -36,6 +36,28 @@ Examples:
 2. Make a code image of a file, let's pick a [FastAPI](https://fastapi.tiangolo.com/) app I am working on:
 
 	```
+	$ cat /Users/bbelderbos/code/infinite-scroll/main.py
+	from fastapi import FastAPI, Query
+	from sqlmodel import select, Session
+
+	from youtube.models import YouTube, YouTubeRead
+	from youtube.db import engine
+
+	app = FastAPI()
+
+
+	@app.get("/videos/", response_model=list[YouTubeRead])
+	def read_videos(offset: int = 0, limit: int = Query(default=100, lte=100)):
+		with Session(engine) as session:
+			videos = session.exec(
+				select(YouTube).offset(offset).limit(limit)
+			).all()
+			return videos
+	```
+
+	Run the script with the `-f` option:
+
+	```
 	python script.py -f /Users/bbelderbos/code/infinite-scroll/main.py
 	```
 
