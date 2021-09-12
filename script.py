@@ -1,5 +1,6 @@
 import os
 from time import sleep
+from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
 import pyperclip
@@ -17,7 +18,8 @@ def create_code_image(code: str, language: str, headless: bool = True):
     options = Options()
     options.headless = headless
     with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
-        url = CARBON_URL.format(code=code, language=language)
+        encoded_code = quote_plus(code)
+        url = CARBON_URL.format(code=encoded_code, language=language)
         driver.get(url)
         driver.find_element_by_id("export-menu").click()
         driver.find_element_by_id("export-png").click()
@@ -56,7 +58,7 @@ if __name__ == "__main__":
         else:
             code = args.snippet
 
-        return code.replace("\n", "%0A")
+        return code
 
     args = parser.parse_args()
     code = _get_code(args)
