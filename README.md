@@ -67,7 +67,7 @@ Examples:
 
 3. Copying the following lines to the clipboard:
 
-	Here is my favorite feature: make an image from code I have currently on my OS clipboard (thanks `pyperclip`):
+	Here is my favorite feature: make an image from code I currently have on my OS clipboard (thanks `pyperclip`):
 
 	Try it out, copy this code:
 
