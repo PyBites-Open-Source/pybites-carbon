@@ -17,16 +17,8 @@ optional arguments:
   -s SNIPPET, --snippet SNIPPET
                         Code snippet
   -l LANGUAGE, --language LANGUAGE
-                        Code string
+                        Programming language
   -b, --browser         Run Selenium in interactive (not headless) mode
-```
-
-Note that these are mutually exclusive:
-
-```
-$ python script.py -c -f script.py
-usage: script.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-b]
-script.py: error: argument -f/--file: not allowed with argument -c/--clipboard
 ```
 
 Examples:
