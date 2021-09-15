@@ -97,7 +97,17 @@ Download the [ChromeDriver](https://chromedriver.chromium.org/), and extract it 
 echo "CHROMEDRIVER_PATH=/Users/bbelderbos/bin/chromedriver" > .env
 ```
 
-The script uses Selenium in headless mode, the resulting `carbon.png` will be downloaded to the folder you run the script from.
+If you have a slow internet connection you can optionally internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`:
+
+```
+echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
+```
+
+(`>>` means append (not override) to an existing file)
+
+The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer.
+
+I only tested this on Mac so far. In the headless default mode it would download the image to the directory I ran the script in. Using interactive mode (`-b` switch) it would download it to my `~/Downloads` folder.
 
 ---
 
