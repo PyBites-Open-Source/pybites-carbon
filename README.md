@@ -2,6 +2,8 @@
 
 A small utility to generate beautiful code images using [the awesome _carbon_ service](https://carbon.now.sh/).
 
+> We added a walk-through of the tool and the code [on our YouTube channel](https://www.youtube.com/watch?v=oxeGhlJQll8).
+
 You can load in code from a file, the clipboard or a snippet:
 
 ```
@@ -115,8 +117,6 @@ Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites]
 
 Future plans / TODOs:
 
-- Create a [PyBites YouTube training video](https://www.youtube.com/channel/UCBn-uKDGsRBfcB0lQeOB_gA) about the code (`selenium` and `argparse`).
+- Could build an API service around this ...
 
 - Support passing other font types and background colors so we can also use it for our weekly [PyBites Career and Mindset tips](https://codechalleng.es/tips).
-
-- Could build an API service around this ...
