@@ -11,6 +11,10 @@ load_dotenv()
 
 CARBON_URL = "https://carbon.now.sh?l={language}&code={code}"
 CHROMEDRIVER_PATH = os.environ["CHROMEDRIVER_PATH"]
+# in case of a slow connection it might take a bit longer to download the image
+SECONDS_SLEEP_BEFORE_DOWNLOAD = int(
+    os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3)
+)
 
 
 def create_code_image(code: str, language: str, headless: bool = True):
@@ -24,7 +28,7 @@ def create_code_image(code: str, language: str, headless: bool = True):
         driver.find_element_by_id("export-menu").click()
         driver.find_element_by_id("export-png").click()
         # make sure it has time to download the image
-        sleep(2)
+        sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
 
 
 if __name__ == "__main__":
@@ -41,8 +45,11 @@ if __name__ == "__main__":
         "-l", "--language", type=str, default="python", help="Programming language"
     )
     parser.add_argument(
-        "-b", "--browser", action="store_true", default=False,
-        help="Run Selenium in interactive (not headless) mode"
+        "-b",
+        "--browser",
+        action="store_true",
+        default=False,
+        help="Run Selenium in interactive (not headless) mode",
     )
 
     def _get_code(args: argparse.Namespace) -> str:
