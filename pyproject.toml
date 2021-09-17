@@ -6,8 +6,24 @@ build-backend = "flit_core.buildapi"
 name = "carbon"
 authors = [{name = "Bob Belderbos", email = "bob@pybit.es"}]
 readme = "README.md"
+requires-python = ">=3.7"
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
+dependencies = [
+    "pyperclip >=1.8.2",
+    "python-dotenv >=0.19.0",
+    "selenium >=3.141.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
 
 [project.urls]
-Home = "https://github.com/bbelderbos/carbon-selenium"
+Documentation = "https://www.youtube.com/watch?v=oxeGhlJQll8"
+Source = "https://github.com/bbelderbos/carbon-selenium"
+
+[project.scripts]
+carbon = "carbon.main:main"
