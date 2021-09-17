@@ -15,10 +15,14 @@ dependencies = [
     "selenium >=3.141.0",
 ]
 
+[tool.flit.module]
+name = "carbon"
+
 [project.optional-dependencies]
 test = [
     "pytest",
-    "pytest-cov",
+    "mypy",
+    "flake8",
 ]
 
 [project.urls]
