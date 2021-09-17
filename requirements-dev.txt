@@ -1,0 +1,4 @@
+pytest
+mypy
+flit
+flake8
