@@ -7,7 +7,7 @@ A small utility to generate beautiful code images using [the awesome _carbon_ se
 You can load in code from a file, the clipboard or a snippet:
 
 ```
-$ python -m carbon.main -h
+$ carbon -h
 usage: main.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-b]
 
 Create a carbon code image
@@ -28,7 +28,7 @@ Examples:
 1. Make a hello world snippet carbon image:
 
 	```
-	$ python -m carbon.main -s 'print("hello world")'
+	$ carbon -s 'print("hello world")'
 	```
 
 	Resulting image:
@@ -60,7 +60,7 @@ Examples:
 	Run the script with the `-f` option:
 
 	```
-	python -m carbon.main -f /Users/bbelderbos/code/infinite-scroll/main.py
+	carbon -f /Users/bbelderbos/code/infinite-scroll/main.py
 	```
 
 	Resulting image:
@@ -82,7 +82,7 @@ Examples:
 	Then run the script with `-c`:
 
 	```
-	$ python -m carbon.main -c
+	$ carbon -c
 	```
 
 	Resulting image:
