@@ -19,24 +19,31 @@ DEFAULT_BACKGROUND = "#ABB8C3"
 DEFAULT_THEME = "seti"
 
 
-def create_code_image(code: str, **kwargs: str) -> None:
-    """Generate a beautiful Carbon code image"""
+def _create_carbon_url(code, **kwargs: str) -> str:
     language = kwargs.get("language") or DEFAULT_LANGUAGE
     background = kwargs.get("background") or DEFAULT_BACKGROUND
     theme = kwargs.get("theme") or DEFAULT_THEME
 
+    url = CARBON_URL.format(
+        language=quote_plus(language),
+        code=quote_plus(code),
+        background=quote_plus(background),
+        theme=quote_plus(theme),
+    )
+
+    return url
+
+
+def create_code_image(code: str, **kwargs: str) -> None:
+    """Generate a beautiful Carbon code image"""
     options = Options()
     options.headless = not bool(kwargs.get("interactive", False))
-    prefs = {"download.default_directory": kwargs.get("destination", os.getcwd())}
+    destination = kwargs.get("destination", os.getcwd())
+    prefs = {"download.default_directory": destination}
     options.add_experimental_option("prefs", prefs)
 
+    url = _create_carbon_url(code, **kwargs)
     with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
-        url = CARBON_URL.format(
-            language=quote_plus(language),
-            code=quote_plus(code),
-            background=quote_plus(background),
-            theme=quote_plus(theme),
-        )
         driver.get(url)
         driver.find_element_by_id("export-menu").click()
         driver.find_element_by_id("export-png").click()
