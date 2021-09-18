@@ -2,3 +2,4 @@
 carbon*.png
 dist
 venv
+.coverage
