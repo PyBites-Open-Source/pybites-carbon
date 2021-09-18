@@ -1,4 +1,5 @@
 pytest
+pytesseract
 mypy
 flit
 flake8
