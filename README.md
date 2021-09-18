@@ -22,7 +22,7 @@ To run this automatically upon starting a new shell, add this line to your `.zsh
 
 ## Slow internet
 
-If you have a slow internet connection you can optionally internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
+If you have a slow internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
 
 ```
 export SECONDS_SLEEP_BEFORE_DOWNLOAD=10
