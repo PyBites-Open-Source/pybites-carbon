@@ -12,14 +12,22 @@ def get_args():
     )
     group.add_argument("-s", "--snippet", type=str, help="Code snippet")
     parser.add_argument(
-        "-l", "--language", type=str, default="python", help="Programming language"
-    )
-    parser.add_argument(
         "-i",
         "--interactive",
         action="store_true",
         default=False,
         help="Run Selenium in interactive (not headless) mode",
+    )
+    parser.add_argument(
+        "-l", "--language", type=str, help="Programming language"
+    )
+    parser.add_argument(
+        "-b", "--background", type=str,
+        help="Background color"
+    )
+    parser.add_argument(
+        "-t", "--theme", type=str,
+        help="Name of the theme"
     )
     return parser.parse_args()
 

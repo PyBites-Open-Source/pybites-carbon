@@ -5,7 +5,13 @@ from .carbon import create_code_image
 def main():
     args = get_args()
     code = get_code(args)
-    create_code_image(code, args.language, headless=not args.interactive)
+    options = {
+        "language": args.language,
+        "background": args.background,
+        "theme": args.theme,
+        "interactive": args.interactive,
+    }
+    create_code_image(code, **options)
 
 
 if __name__ == "__main__":
