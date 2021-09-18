@@ -126,7 +126,7 @@ I added some aliases to my `.zshrc` to make it even easier (last two are for [ou
 
 ![image from string](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-shell-alias.png)
 
-(Actually I created this image with: `carbon -c -l application/x-sh -t monokai -b #D7D7BE`)
+(Actually I created this image having this alias line on my clipboard, then I ran: `carbon -c -l application/x-sh -t monokai -b #D7D7BE -d $HOME/Downloads`)
 
 ## Developer setup
 
