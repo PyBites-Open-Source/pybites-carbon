@@ -30,4 +30,4 @@ Documentation = "https://www.youtube.com/watch?v=oxeGhlJQll8"
 Source = "https://github.com/bbelderbos/pybites-carbon"
 
 [project.scripts]
-carbon = "carbon.main:main"
+carbon = "carbon.__main__:main"
