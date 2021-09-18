@@ -2,13 +2,35 @@
 
 A small utility to generate beautiful code images using [the awesome _carbon_ service](https://carbon.now.sh/).
 
+## Install
+
 You can get it from PyPI:
 
 ```
 pip install pybites-carbon
 ```
 
-You can load in code from a file, the clipboard or a snippet:
+## Required driver
+
+You need to download the [ChromeDriver](https://chromedriver.chromium.org/) (same version as your Chrome browser) and make it available in your environment:
+
+```
+export CHROMEDRIVER_PATH=$HOME/bin/chromedriver
+```
+
+To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc` file.
+
+## Slow internet
+
+If you have a slow internet connection you can optionally internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
+
+```
+export SECONDS_SLEEP_BEFORE_DOWNLOAD=10
+```
+
+## Usage
+
+You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image. Lastly, this tool uses Selenium in _headless_ mode, to see what it does in the foreground, use `-i` (or `--interactive`).
 
 ```
 usage: carbon [-h] (-f FILE | -c | -s SNIPPET) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION]
@@ -32,15 +54,7 @@ optional arguments:
                         Specify folder where image should be stored (defaults to current directory)
 ```
 
-You need to download the [ChromeDriver](https://chromedriver.chromium.org/) and make it available in your environment, for example:
-
-```
-export CHROMEDRIVER_PATH=$HOME/bin/chromedriver
-```
-
-To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc`.
-
-Examples using the tool:
+## Examples
 
 1. Make a hello world snippet carbon image:
 
@@ -106,11 +120,13 @@ Examples using the tool:
 
 	![image from clipboard](assets/image-from-clipboard.png)
 
+## Useful shell aliases
+
 I added some aliases to my `.zshrc` to make it even easier (last two are for [our career and mindset tips](https://codechalleng.es/tips))
 
 ![image from string](assets/bash-aliases.png)
 
-(Image created with this tool: `carbon -c -l application/x-sh -t monokai -b #D7D7BE`)
+(Actually I created this image with: `carbon -c -l application/x-sh -t monokai -b #D7D7BE`)
 
 ## Developer setup
 
@@ -122,7 +138,7 @@ Download the [ChromeDriver](https://chromedriver.chromium.org/), and extract it 
 echo "CHROMEDRIVER_PATH=$HOME/bin/chromedriver" > .env
 ```
 
-If you have a slow internet connection you can optionally internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`:
+Again you can increase the time the script takes to download the image, in case you have a slower internet connection:
 
 ```
 echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
@@ -130,10 +146,10 @@ echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
 
 (`>>` means append (not override) to an existing file)
 
-The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer or to a different directory specified with `-d` (or `--destination`).
+The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer unless you specify a different destination directory using `-d` (or `--destination`).
 
-To run the tests, type `pytest` or `make test`.
+To run the tests, type `pytest` or `make test` (it uses `pytesseract` - in the dev requirements - to read the text from the generated carbon image file).
 
 ---
 
-Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites](https://twitter.com/pybites) when you post one of the created images on Twitter. Also make sure you follow us to receive multiple Python tips every week (using these images).
+Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites](https://twitter.com/pybites) when you post one of the created images on Twitter.
