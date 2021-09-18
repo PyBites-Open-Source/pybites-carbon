@@ -64,7 +64,7 @@ optional arguments:
 
 	Resulting image:
 
-	![image from string](assets/image-from-string.png)
+	![image from string](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-example1.png)
 
 2. Make a code image of a file, let's pick a [FastAPI](https://fastapi.tiangolo.com/) app I am working on:
 
@@ -96,7 +96,7 @@ optional arguments:
 
 	Resulting image:
 
-	![image from file](assets/image-from-file.png)
+	![image from file](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-example2.png)
 
 3. Copying the following lines to the clipboard:
 
@@ -118,13 +118,13 @@ optional arguments:
 
 	Resulting image:
 
-	![image from clipboard](assets/image-from-clipboard.png)
+	![image from clipboard](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-example3.png)
 
 ## Useful shell aliases
 
 I added some aliases to my `.zshrc` to make it even easier (last two are for [our career and mindset tips](https://codechalleng.es/tips))
 
-![image from string](assets/bash-aliases.png)
+![image from string](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-shell-alias.png)
 
 (Actually I created this image with: `carbon -c -l application/x-sh -t monokai -b #D7D7BE`)
 
