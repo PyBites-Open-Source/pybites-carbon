@@ -124,7 +124,7 @@ optional arguments:
 
 ## Useful shell aliases
 
-I added some aliases to my `.zshrc` to make it even easier (last two are for [our career and mindset tips](https://codechalleng.es/tips))
+I added this alias to my `.zshrc` to make it even easier:
 
 ![image from string](https://pybites-tips.s3.eu-central-1.amazonaws.com/pybites-carbon-shell-alias.png)
 
