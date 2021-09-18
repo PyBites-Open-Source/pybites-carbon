@@ -19,21 +19,15 @@ def get_args():
         default=False,
         help="Run Selenium in interactive (not headless) mode",
     )
+    parser.add_argument("-l", "--language", type=str, help="Programming language")
+    parser.add_argument("-b", "--background", type=str, help="Background color")
+    parser.add_argument("-t", "--theme", type=str, help="Name of the theme")
     parser.add_argument(
-        "-l", "--language", type=str, help="Programming language"
-    )
-    parser.add_argument(
-        "-b", "--background", type=str,
-        help="Background color"
-    )
-    parser.add_argument(
-        "-t", "--theme", type=str,
-        help="Name of the theme"
-    )
-    parser.add_argument(
-        "-d", "--destination", type=str,
+        "-d",
+        "--destination",
+        type=str,
         default=os.getcwd(),
-        help="Specify folder where image should be stored"
+        help="Specify folder where image should be stored (defaults to current directory)",
     )
     return parser.parse_args()
 
