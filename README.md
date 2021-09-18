@@ -33,7 +33,8 @@ export SECONDS_SLEEP_BEFORE_DOWNLOAD=10
 You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image. Lastly, this tool uses Selenium in _headless_ mode, to see what it does in the foreground, use `-i` (or `--interactive`).
 
 ```
-usage: carbon [-h] (-f FILE | -c | -s SNIPPET) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION]
+$ carbon -h
+usage: carbon [-h] (-f FILE | -c | -s SNIPPET | -v) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION]
 
 Create a carbon code image
 
@@ -43,6 +44,7 @@ optional arguments:
   -c, --clipboard       Use code on clipboard
   -s SNIPPET, --snippet SNIPPET
                         Code snippet
+  -v, --version         Show version
   -i, --interactive     Run Selenium in interactive (not headless) mode
   -l LANGUAGE, --language LANGUAGE
                         Programming language

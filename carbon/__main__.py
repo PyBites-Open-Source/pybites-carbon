@@ -1,9 +1,16 @@
+import sys
+
+from . import __version__
 from .cli import get_args, get_code
 from .carbon import create_code_image
 
 
 def main():
     args = get_args()
+    if args.version:
+        print(__version__)
+        sys.exit(0)
+
     code = get_code(args)
     options = {
         "language": args.language,

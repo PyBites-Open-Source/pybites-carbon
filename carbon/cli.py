@@ -12,6 +12,9 @@ def get_args():
         "-c", "--clipboard", action="store_true", help="Use code on clipboard"
     )
     group.add_argument("-s", "--snippet", type=str, help="Code snippet")
+    group.add_argument(
+        "-v", "--version", action="store_true", default=False, help="Show version"
+    )
     parser.add_argument(
         "-i",
         "--interactive",
