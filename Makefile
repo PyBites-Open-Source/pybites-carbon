@@ -16,4 +16,3 @@ test:
 
 .PHONY: ci
 ci: lint test
-

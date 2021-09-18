@@ -36,7 +36,7 @@ def create_code_image(code: str, **kwargs: Union[str, bool]) -> None:
             language=quote_plus(language),
             code=quote_plus(code),
             background=quote_plus(background),
-            theme=quote_plus(theme)
+            theme=quote_plus(theme),
         )
         driver.get(url)
         driver.find_element_by_id("export-menu").click()
