@@ -10,6 +10,7 @@ def main():
         "background": args.background,
         "theme": args.theme,
         "interactive": args.interactive,
+        "destination": args.destination,
     }
     create_code_image(code, **options)
 

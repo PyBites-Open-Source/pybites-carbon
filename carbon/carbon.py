@@ -28,6 +28,8 @@ def create_code_image(code: str, **kwargs: Union[str, bool]) -> None:
 
     options = Options()
     options.headless = not kwargs.get("interactive", False)
+    prefs = {"download.default_directory": kwargs.get("destination", os.getcwd())}
+    options.add_experimental_option("prefs", prefs)
 
     with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
         url = CARBON_URL.format(

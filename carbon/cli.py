@@ -1,4 +1,5 @@
 import argparse
+import os
 
 import pyperclip
 
@@ -28,6 +29,11 @@ def get_args():
     parser.add_argument(
         "-t", "--theme", type=str,
         help="Name of the theme"
+    )
+    parser.add_argument(
+        "-d", "--destination", type=str,
+        default=os.getcwd(),
+        help="Specify folder where image should be stored"
     )
     return parser.parse_args()
 
