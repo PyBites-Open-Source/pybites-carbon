@@ -1,14 +1,17 @@
-# Carbon Selenium
+# PyBites Carbon
 
 A small utility to generate beautiful code images using [the awesome _carbon_ service](https://carbon.now.sh/).
 
-> We added a walk-through of the tool and the code [on our YouTube channel](https://www.youtube.com/watch?v=oxeGhlJQll8).
+You can get it from PyPI:
+
+```
+pip install pybites-carbon
+```
 
 You can load in code from a file, the clipboard or a snippet:
 
 ```
-$ carbon -h
-usage: main.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-i]
+usage: carbon [-h] (-f FILE | -c | -s SNIPPET) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION]
 
 Create a carbon code image
 
@@ -18,12 +21,26 @@ optional arguments:
   -c, --clipboard       Use code on clipboard
   -s SNIPPET, --snippet SNIPPET
                         Code snippet
+  -i, --interactive     Run Selenium in interactive (not headless) mode
   -l LANGUAGE, --language LANGUAGE
                         Programming language
-  -i, --interactive     Run Selenium in interactive (not headless) mode
+  -b BACKGROUND, --background BACKGROUND
+                        Background color
+  -t THEME, --theme THEME
+                        Name of the theme
+  -d DESTINATION, --destination DESTINATION
+                        Specify folder where image should be stored (defaults to current directory)
 ```
 
-Examples:
+You need to download the [ChromeDriver](https://chromedriver.chromium.org/) and make it available in your environment, for example:
+
+```
+export CHROMEDRIVER_PATH=$HOME/bin/chromedriver
+```
+
+To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc`.
+
+Examples using the tool:
 
 1. Make a hello world snippet carbon image:
 
@@ -38,7 +55,7 @@ Examples:
 2. Make a code image of a file, let's pick a [FastAPI](https://fastapi.tiangolo.com/) app I am working on:
 
 	```
-	$ cat /Users/bbelderbos/code/infinite-scroll/main.py
+	$ cat $HOME/code/infinite-scroll/main.py
 	from fastapi import FastAPI, Query
 	from sqlmodel import select, Session
 
@@ -60,7 +77,7 @@ Examples:
 	Run the script with the `-f` option:
 
 	```
-	carbon -f /Users/bbelderbos/code/infinite-scroll/main.py
+	carbon -f $HOME/code/infinite-scroll/main.py
 	```
 
 	Resulting image:
@@ -89,14 +106,20 @@ Examples:
 
 	![image from clipboard](assets/image-from-clipboard.png)
 
-## Setup
+I added some aliases to my `.zshrc` to make it even easier (last two are for [our career and mindset tips](https://codechalleng.es/tips))
 
-Make a virtual environment and install the `requirements.txt` file.
+![image from string](assets/bash-aliases.png)
+
+(Image created with this tool: `carbon -c -l application/x-sh -t monokai -b #D7D7BE`)
+
+## Developer setup
+
+Make a virtual environment and install the `requirements-dev.txt` file or just run `make setup`.
 
 Download the [ChromeDriver](https://chromedriver.chromium.org/), and extract it in a folder, then set it's full path in `.env`, for example:
 
 ```
-echo "CHROMEDRIVER_PATH=/Users/bbelderbos/bin/chromedriver" > .env
+echo "CHROMEDRIVER_PATH=$HOME/bin/chromedriver" > .env
 ```
 
 If you have a slow internet connection you can optionally internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`:
@@ -107,16 +130,10 @@ echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
 
 (`>>` means append (not override) to an existing file)
 
-The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer.
+The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer or to a different directory specified with `-d` (or `--destination`).
 
-I only tested this on Mac so far. In the headless default mode it would download the image to the directory I ran the script in. Using interactive mode (`-i` switch) it would download it to my `~/Downloads` folder.
+To run the tests, type `pytest` or `make test`.
 
 ---
 
 Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites](https://twitter.com/pybites) when you post one of the created images on Twitter. Also make sure you follow us to receive multiple Python tips every week (using these images).
-
-Future plans / TODOs:
-
-- Could build an API service around this ...
-
-- Support passing other font types and background colors so we can also use it for our weekly [PyBites Career and Mindset tips](https://codechalleng.es/tips).
