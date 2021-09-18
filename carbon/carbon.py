@@ -9,8 +9,7 @@ from selenium.webdriver.chrome.options import Options
 
 load_dotenv()
 
-CARBON_BASE_URL = "https://carbon.now.sh"
-CARBON_OPTIONS = "?l={language}&code={code}&bg={background}&t={theme}"
+CARBON_URL = "https://carbon.now.sh?l={language}&code={code}&bg={background}&t={theme}"
 CHROMEDRIVER_PATH = os.environ["CHROMEDRIVER_PATH"]
 
 # in case of a slow connection it might take a bit longer to download the image
@@ -31,13 +30,11 @@ def create_code_image(code: str, **kwargs: Union[str, bool]) -> None:
     options.headless = not kwargs.get("interactive", False)
 
     with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
-        url = CARBON_BASE_URL + quote_plus(
-            CARBON_OPTIONS.format(
-                language=language,
-                code=code,
-                background=background,
-                theme=theme
-            )
+        url = CARBON_URL.format(
+            language=quote_plus(language),
+            code=quote_plus(code),
+            background=quote_plus(background),
+            theme=quote_plus(theme)
         )
         driver.get(url)
         driver.find_element_by_id("export-menu").click()
