@@ -15,8 +15,8 @@ def get_args():
         "-l", "--language", type=str, default="python", help="Programming language"
     )
     parser.add_argument(
-        "-b",
-        "--browser",
+        "-i",
+        "--interactive",
         action="store_true",
         default=False,
         help="Run Selenium in interactive (not headless) mode",

@@ -8,7 +8,7 @@ You can load in code from a file, the clipboard or a snippet:
 
 ```
 $ carbon -h
-usage: main.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-b]
+usage: main.py [-h] (-f FILE | -c | -s SNIPPET) [-l LANGUAGE] [-i]
 
 Create a carbon code image
 
@@ -20,7 +20,7 @@ optional arguments:
                         Code snippet
   -l LANGUAGE, --language LANGUAGE
                         Programming language
-  -b, --browser         Run Selenium in interactive (not headless) mode
+  -i, --interactive     Run Selenium in interactive (not headless) mode
 ```
 
 Examples:
@@ -109,7 +109,7 @@ echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
 
 The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer.
 
-I only tested this on Mac so far. In the headless default mode it would download the image to the directory I ran the script in. Using interactive mode (`-b` switch) it would download it to my `~/Downloads` folder.
+I only tested this on Mac so far. In the headless default mode it would download the image to the directory I ran the script in. Using interactive mode (`-i` switch) it would download it to my `~/Downloads` folder.
 
 ---
 
