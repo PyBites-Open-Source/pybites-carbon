@@ -1,6 +1,5 @@
 import os
 from time import sleep
-from typing import Union
 from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
@@ -20,14 +19,14 @@ DEFAULT_BACKGROUND = "#ABB8C3"
 DEFAULT_THEME = "seti"
 
 
-def create_code_image(code: str, **kwargs: Union[str, bool]) -> None:
+def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
     language = kwargs.get("language") or DEFAULT_LANGUAGE
     background = kwargs.get("background") or DEFAULT_BACKGROUND
     theme = kwargs.get("theme") or DEFAULT_THEME
 
     options = Options()
-    options.headless = not kwargs.get("interactive", False)
+    options.headless = not bool(kwargs.get("interactive", False))
     prefs = {"download.default_directory": kwargs.get("destination", os.getcwd())}
     options.add_experimental_option("prefs", prefs)
 
