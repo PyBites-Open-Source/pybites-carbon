@@ -6,7 +6,7 @@ import pyperclip
 from . import __version__ as version
 
 
-def read_frm_file(filename: str) -> str:
+def get_code_from_file(filename: str) -> str:
     if not os.path.isfile(filename):
         raise argparse.ArgumentTypeError(f"No such file: {filename}")
     with open(os.path.abspath(filename), mode="rt") as fp:
@@ -23,7 +23,7 @@ def get_args():
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(
-        "-f", "--file", type=read_frm_file, help="File with code", dest="code"
+        "-f", "--file", type=get_code_from_file, help="File with code", dest="code"
     )
     group.add_argument(
         "-c",
