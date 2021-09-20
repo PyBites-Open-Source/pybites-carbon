@@ -13,6 +13,13 @@ def get_code_from_file(filename: str) -> str:
         return fp.read()
 
 
+def environ_or_required(key: str) -> dict:
+    if os.environ.get(key):
+        return {"default": os.environ.get(key)}
+    else:
+        return {"required": True}
+
+
 def get_args():
     parser = argparse.ArgumentParser(
         description="Create a carbon code image",
@@ -54,5 +61,10 @@ def get_args():
         "--destination",
         default=os.getcwd(),
         help="Specify folder where image should be stored (defaults to current directory)",
+    )
+    parser.add_argument(
+        "--driver-path",
+        help="Path to the executable, if it is not given it reads value from environment variable (DRIVER_PATH)",
+        **environ_or_required("DRIVER_PATH"),
     )
     return parser.parse_args()
