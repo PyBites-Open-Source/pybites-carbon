@@ -14,10 +14,11 @@ CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH", "")
 # in case of a slow connection it might take a bit longer to download the image
 SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
 
+
 def _create_carbon_url(code, **kwargs: str) -> str:
-    language = kwargs.get("language")
-    background = kwargs.get("background")
-    theme = kwargs.get("theme")
+    language = kwargs["language"]
+    background = kwargs["background"]
+    theme = kwargs["theme"]
 
     url = CARBON_URL.format(
         language=quote_plus(language),
