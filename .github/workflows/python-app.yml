@@ -40,4 +40,4 @@ jobs:
       run: |
         pytest
       env:
-        CHROMEDRIVER_PATH=chromedriver
+        CHROMEDRIVER_PATH: "chromedriver"
