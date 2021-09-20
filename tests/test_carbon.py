@@ -23,11 +23,7 @@ def driver():
 
 @pytest.fixture()
 def python_kwargs() -> dict:
-    return {
-        "language": "python",
-        "background": "#ABB8C3",
-        "theme": "seti",
-    }
+    return {"language": "python", "background": "#ABB8C3", "theme": "seti"}
 
 
 def test_create_image_for_one_liner(python_kwargs):
@@ -50,7 +46,6 @@ def test_create_image_for_larger_snippet(python_kwargs):
 
 def test_storing_image_in_different_folder(tmpdir, python_kwargs):
     carbon_file = tmpdir / CARBON_DOWNLOAD_FILE
-    carbon_file.unlink(missing_ok=True)
     assert not carbon_file.exists()
     create_code_image(ONE_LINE_SNIPPET, destination=tmpdir.strpath, **python_kwargs)
     assert carbon_file.exists()
@@ -62,7 +57,7 @@ def test_storing_image_in_different_folder(tmpdir, python_kwargs):
         (
             "hello world",
             {"background": "#ABB8C3", "language": "python", "theme": "seti"},
-            "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=seti",
+            "https://carbon.now.sh?l=python&code=hello+world&bg=%23ABB8C3&t=seti",
         ),
         (
             "hello",
