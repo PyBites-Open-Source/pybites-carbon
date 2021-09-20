@@ -1,4 +1,5 @@
 import os
+import sys
 from time import sleep
 from urllib.parse import quote_plus
 
@@ -9,7 +10,10 @@ from selenium.webdriver.chrome.options import Options
 load_dotenv()
 
 CARBON_URL = "https://carbon.now.sh?l={language}&code={code}&bg={background}&t={theme}"
-CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH", "")
+CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH")
+if CHROMEDRIVER_PATH is None:
+    print("Please set the CHROMEDRIVER_PATH environment variable")
+    sys.exit(1)
 
 # in case of a slow connection it might take a bit longer to download the image
 SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
