@@ -152,6 +152,13 @@ The script uses Selenium in _headless mode_. The resulting `carbon.png` image wi
 
 To run the tests, type `pytest` or `make test` (it uses `pytesseract` - in the dev requirements - to read the text from the generated carbon image file).
 
+We recommend running [`black`](https://black.readthedocs.io/en/stable/) before committing code. To set this up run this after checking out the repo:
+
+```
+$ pre-commit install
+pre-commit installed at .git/hooks/pre-commit
+```
+
 ---
 
 Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites](https://twitter.com/pybites) when you post one of the created images on Twitter.
