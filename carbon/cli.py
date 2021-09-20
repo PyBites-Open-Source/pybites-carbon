@@ -14,10 +14,11 @@ def get_code_from_file(filename: str) -> str:
 
 
 def environ_or_required(key: str) -> dict:
-    if os.environ.get(key):
-        return {"default": os.environ.get(key)}
-    else:
+    env_var = os.environ.get(key)
+    if env_var is None:
         return {"required": True}
+    else:
+        return {"default": env_var}
 
 
 def get_args():
