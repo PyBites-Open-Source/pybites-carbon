@@ -15,10 +15,10 @@ CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH", "")
 SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
 
 
-def _create_carbon_url(code, **kwargs: str) -> str:
-    language = kwargs["language"]
-    background = kwargs["background"]
-    theme = kwargs["theme"]
+def _create_carbon_url(code, **carbon_options: str) -> str:
+    language = carbon_options["language"]
+    background = carbon_options["background"]
+    theme = carbon_options["theme"]
 
     url = CARBON_URL.format(
         language=quote_plus(language),
