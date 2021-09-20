@@ -41,7 +41,6 @@ def test_create_image_for_larger_snippet(python_kwargs):
     assert "fixture" in image_text
     assert "Chrome" in image_text
     assert "yield" in image_text
-    assert "except" in image_text
 
 
 def test_storing_image_in_different_folder(tmpdir, python_kwargs):
