@@ -1,7 +1,7 @@
 from pathlib import Path
 
-import pytest
 import pytesseract
+import pytest
 
 from carbon.carbon import _create_carbon_url, create_code_image
 
@@ -21,15 +21,24 @@ def driver():
 """
 
 
-def test_create_image_for_one_liner():
-    create_code_image(ONE_LINE_SNIPPET)
+@pytest.fixture()
+def python_kwargs() -> dict:
+    return {
+        "language": "python",
+        "background": "#ABB8C3",
+        "theme": "seti",
+    }
+
+
+def test_create_image_for_one_liner(python_kwargs):
+    create_code_image(ONE_LINE_SNIPPET, **python_kwargs)
     assert CARBON_DOWNLOAD_FILE.exists()
     image_text = pytesseract.image_to_string(CARBON_DOWNLOAD_FILE.name)
     assert "hello world" in image_text
 
 
-def test_create_image_for_larger_snippet():
-    create_code_image(LONGER_CODE_SNIPPET)
+def test_create_image_for_larger_snippet(python_kwargs):
+    create_code_image(LONGER_CODE_SNIPPET, **python_kwargs)
     assert CARBON_DOWNLOAD_FILE.exists()
     image_text = pytesseract.image_to_string(CARBON_DOWNLOAD_FILE.name)
     # not getting full text, but at least some snippets which show it worked
@@ -39,47 +48,40 @@ def test_create_image_for_larger_snippet():
     assert "except" in image_text
 
 
-def test_storing_image_in_different_folder(tmpdir):
+def test_storing_image_in_different_folder(tmpdir, python_kwargs):
     carbon_file = tmpdir / CARBON_DOWNLOAD_FILE
-    if carbon_file.exists():
-        carbon_file.unlink()
+    carbon_file.unlink(missing_ok=True)
     assert not carbon_file.exists()
-    create_code_image(ONE_LINE_SNIPPET, destination=tmpdir.strpath)
+    create_code_image(ONE_LINE_SNIPPET, destination=tmpdir.strpath, **python_kwargs)
     assert carbon_file.exists()
 
 
 @pytest.mark.parametrize(
     "code, kwargs, expected",
     [
-        ("hello", {}, "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=seti"),
+        (
+            "hello world",
+            {"background": "#ABB8C3", "language": "python", "theme": "seti"},
+            "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=seti",
+        ),
         (
             "hello",
-            {"language": "javascript"},
+            {"background": "#ABB8C3", "language": "javascript", "theme": "seti"},
             "https://carbon.now.sh?l=javascript&code=hello&bg=%23ABB8C3&t=seti",
         ),
         (
-            "hello world",
-            {},
-            "https://carbon.now.sh?l=python&code=hello+world&bg=%23ABB8C3&t=seti",
-        ),
-        (
-            "print('hello world')",
-            {},
-            "https://carbon.now.sh?l=python&code=print%28%27hello+world%27%29&bg=%23ABB8C3&t=seti",
-        ),
-        (
             "hello",
-            {"theme": "material"},
+            {"background": "#ABB8C3", "language": "python", "theme": "material"},
             "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=material",
         ),
         (
             "hello",
-            {"background": "#C4F2FD"},
+            {"background": "#C4F2FD", "language": "python", "theme": "seti"},
             "https://carbon.now.sh?l=python&code=hello&bg=%23C4F2FD&t=seti",
         ),
         (
             "hello",
-            {"background": "#D7FFC5", "theme": "text"},
+            {"background": "#D7FFC5", "theme": "text", "language": "python"},
             "https://carbon.now.sh?l=python&code=hello&bg=%23D7FFC5&t=text",
         ),
     ],
