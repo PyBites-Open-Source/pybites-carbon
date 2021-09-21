@@ -23,7 +23,12 @@ def driver():
 
 @pytest.fixture()
 def python_kwargs() -> dict:
-    return {"language": "python", "background": "#ABB8C3", "theme": "seti"}
+    return {
+        "language": "python",
+        "background": "#ABB8C3",
+        "theme": "seti",
+        "driver_path": "chromedriver",
+    }
 
 
 def test_create_image_for_one_liner(python_kwargs):
