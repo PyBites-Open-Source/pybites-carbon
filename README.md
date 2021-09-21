@@ -15,7 +15,7 @@ pip install pybites-carbon
 You need to download the [ChromeDriver](https://chromedriver.chromium.org/) (same version as your Chrome browser) and make it available in your environment:
 
 ```
-export CHROMEDRIVER_PATH=$HOME/bin/chromedriver
+export DRIVER_PATH=$HOME/bin/chromedriver
 ```
 
 To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc` file.
@@ -137,7 +137,7 @@ Make a virtual environment and install the `requirements-dev.txt` file or just r
 Download the [ChromeDriver](https://chromedriver.chromium.org/), and extract it in a folder, then set it's full path in `.env`, for example:
 
 ```
-echo "CHROMEDRIVER_PATH=$HOME/bin/chromedriver" > .env
+echo "DRIVER_PATH=$HOME/bin/chromedriver" > .env
 ```
 
 Again you can increase the time the script takes to download the image, in case you have a slower internet connection:
