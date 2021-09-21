@@ -1,5 +1,4 @@
 import os
-import sys
 from time import sleep
 from urllib.parse import quote_plus
 
@@ -10,10 +9,6 @@ from selenium.webdriver.chrome.options import Options
 load_dotenv()
 
 CARBON_URL = "https://carbon.now.sh?l={language}&code={code}&bg={background}&t={theme}"
-CHROMEDRIVER_PATH = os.environ.get("CHROMEDRIVER_PATH")
-if CHROMEDRIVER_PATH is None:
-    print("Please set the CHROMEDRIVER_PATH environment variable")
-    sys.exit(1)
 
 # in case of a slow connection it might take a bit longer to download the image
 SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
@@ -43,7 +38,7 @@ def create_code_image(code: str, **kwargs: str) -> None:
     options.add_experimental_option("prefs", prefs)
 
     url = _create_carbon_url(code, **kwargs)
-    with webdriver.Chrome(CHROMEDRIVER_PATH, options=options) as driver:
+    with webdriver.Chrome(kwargs["driver_path"], options=options) as driver:
         driver.get(url)
         driver.find_element_by_id("export-menu").click()
         driver.find_element_by_id("export-png").click()
