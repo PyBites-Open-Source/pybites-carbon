@@ -63,6 +63,7 @@ def get_args():
         default=os.getcwd(),
         help="Specify folder where image should be stored (defaults to current directory)",
     )
+    parser.add_argument("-w", "--wt", help="Windows control theme", default="sharp")
     parser.add_argument(
         "--driver-path",
         help="Path to the executable, if it is not given it reads value from environment variable (DRIVER_PATH)",

@@ -8,7 +8,10 @@ from selenium.webdriver.chrome.options import Options
 
 load_dotenv()
 
-CARBON_URL = "https://carbon.now.sh?l={language}&code={code}&bg={background}&t={theme}"
+CARBON_URL = (
+    "https://carbon.now.sh?l={language}&code={code}"
+    "&bg={background}&t={theme}&wt={wt}"
+)
 
 # in case of a slow connection it might take a bit longer to download the image
 SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
@@ -18,14 +21,15 @@ def _create_carbon_url(code, **carbon_options: str) -> str:
     language = carbon_options["language"]
     background = carbon_options["background"]
     theme = carbon_options["theme"]
+    wt = carbon_options["wt"]
 
     url = CARBON_URL.format(
         language=quote_plus(language),
         code=quote_plus(code),
         background=quote_plus(background),
         theme=quote_plus(theme),
+        wt=quote_plus(wt),
     )
-
     return url
 
 
