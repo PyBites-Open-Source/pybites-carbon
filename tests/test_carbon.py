@@ -27,6 +27,7 @@ def python_kwargs() -> dict:
         "language": "python",
         "background": "#ABB8C3",
         "theme": "seti",
+        "wt": "sharp",
         "driver_path": "chromedriver",
     }
 
@@ -60,28 +61,53 @@ def test_storing_image_in_different_folder(tmpdir, python_kwargs):
     [
         (
             "hello world",
-            {"background": "#ABB8C3", "language": "python", "theme": "seti"},
-            "https://carbon.now.sh?l=python&code=hello+world&bg=%23ABB8C3&t=seti",
+            {
+                "background": "#ABB8C3",
+                "language": "python",
+                "theme": "seti",
+                "wt": "sharp",
+            },
+            "https://carbon.now.sh?l=python&code=hello+world&bg=%23ABB8C3&t=seti&wt=sharp",
         ),
         (
             "hello",
-            {"background": "#ABB8C3", "language": "javascript", "theme": "seti"},
-            "https://carbon.now.sh?l=javascript&code=hello&bg=%23ABB8C3&t=seti",
+            {
+                "background": "#ABB8C3",
+                "language": "javascript",
+                "theme": "seti",
+                "wt": "sharp",
+            },
+            "https://carbon.now.sh?l=javascript&code=hello&bg=%23ABB8C3&t=seti&wt=sharp",
         ),
         (
             "hello",
-            {"background": "#ABB8C3", "language": "python", "theme": "material"},
-            "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=material",
+            {
+                "background": "#ABB8C3",
+                "language": "python",
+                "theme": "material",
+                "wt": "sharp",
+            },
+            "https://carbon.now.sh?l=python&code=hello&bg=%23ABB8C3&t=material&wt=sharp",
         ),
         (
             "hello",
-            {"background": "#C4F2FD", "language": "python", "theme": "seti"},
-            "https://carbon.now.sh?l=python&code=hello&bg=%23C4F2FD&t=seti",
+            {
+                "background": "#C4F2FD",
+                "language": "python",
+                "theme": "seti",
+                "wt": "sharp",
+            },
+            "https://carbon.now.sh?l=python&code=hello&bg=%23C4F2FD&t=seti&wt=sharp",
         ),
         (
             "hello",
-            {"background": "#D7FFC5", "theme": "text", "language": "python"},
-            "https://carbon.now.sh?l=python&code=hello&bg=%23D7FFC5&t=text",
+            {
+                "background": "#D7FFC5",
+                "theme": "text",
+                "language": "python",
+                "wt": "bw",
+            },
+            "https://carbon.now.sh?l=python&code=hello&bg=%23D7FFC5&t=text&wt=bw",
         ),
     ],
 )
