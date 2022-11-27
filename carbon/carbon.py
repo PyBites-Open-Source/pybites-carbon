@@ -5,6 +5,7 @@ from urllib.parse import quote_plus
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 
 load_dotenv()
 
@@ -44,7 +45,7 @@ def create_code_image(code: str, **kwargs: str) -> None:
     url = _create_carbon_url(code, **kwargs)
     with webdriver.Chrome(kwargs["driver_path"], options=options) as driver:
         driver.get(url)
-        driver.find_element_by_id("export-menu").click()
-        driver.find_element_by_id("export-png").click()
+        driver.find_element(By.ID, "export-menu").click()
+        driver.find_element(By.ID, "export-png").click()
         # make sure it has time to download the image
         sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)

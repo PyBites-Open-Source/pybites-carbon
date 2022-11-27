@@ -1,4 +1,5 @@
 from pathlib import Path
+import re
 
 import pytesseract
 import pytest
@@ -36,7 +37,8 @@ def test_create_image_for_one_liner(python_kwargs):
     create_code_image(ONE_LINE_SNIPPET, **python_kwargs)
     assert CARBON_DOWNLOAD_FILE.exists()
     image_text = pytesseract.image_to_string(CARBON_DOWNLOAD_FILE.name)
-    assert "hello world" in image_text
+    # not sure why carbon.now.sh started to put stuff on a new line ...
+    assert re.search(r"print.*hello", image_text, re.DOTALL)
 
 
 def test_create_image_for_larger_snippet(python_kwargs):
