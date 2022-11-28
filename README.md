@@ -1,4 +1,4 @@
-# PyBites Carbon
+# Pybites Carbon
 
 A small utility to generate beautiful code images using [the awesome _carbon_ service](https://carbon.now.sh/).
 
@@ -20,6 +20,8 @@ export DRIVER_PATH=$HOME/bin/chromedriver
 
 To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc` file.
 
+TODO: Chrome might not be the best tool anymore, see [this issue](https://github.com/PyBites-Open-Source/pybites-carbon/issues/9) to compare to Selenium / Firefox or Playwright ...
+
 ## Slow internet
 
 If you have a slow internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
@@ -34,26 +36,32 @@ You can load in code from a file, the clipboard or a snippet. You can change the
 
 ```
 $ carbon -h
-usage: carbon [-h] (-f FILE | -c | -s SNIPPET | -v) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION]
+usage: carbon [-h] [-v] (-f CODE | -c | -s CODE) [-i] [-l LANGUAGE] [-b BACKGROUND] [-t THEME] [-d DESTINATION] [-w WT]
+              [--driver-path DRIVER_PATH]
 
 Create a carbon code image
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
-  -f FILE, --file FILE  File with code
-  -c, --clipboard       Use code on clipboard
-  -s SNIPPET, --snippet SNIPPET
-                        Code snippet
-  -v, --version         Show version
-  -i, --interactive     Run Selenium in interactive (not headless) mode
+  -v, --version         show program's version number and exit
+  -f CODE, --file CODE  File with code (default: None)
+  -c, --clipboard       Use code on clipboard (default: None)
+  -s CODE, --snippet CODE
+                        Code snippet (default: None)
+  -i, --interactive     Run Selenium in interactive (not headless) mode (default: False)
   -l LANGUAGE, --language LANGUAGE
-                        Programming language
+                        Programming language (default: python)
   -b BACKGROUND, --background BACKGROUND
-                        Background color
+                        Background color (default: #ABB8C3)
   -t THEME, --theme THEME
-                        Name of the theme
+                        Name of the theme (default: seti)
   -d DESTINATION, --destination DESTINATION
-                        Specify folder where image should be stored (defaults to current directory)
+                        Specify folder where image should be stored (defaults to current directory) (default:
+                        /Users/bbelderbos/code/pybites-carbon)
+  -w WT, --wt WT        Windows control theme (default: sharp)
+  --driver-path DRIVER_PATH
+                        Path to the executable, if it is not given it reads value from environment variable
+                        (DRIVER_PATH) (default: /Users/bbelderbos/bin/chromedriver)
 ```
 
 ## Examples
@@ -161,4 +169,4 @@ pre-commit installed at .git/hooks/pre-commit
 
 ---
 
-Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [PyBites](https://twitter.com/pybites) when you post one of the created images on Twitter.
+Enjoy and feel free to mention [me](https://twitter.com/bbelderbos) or [Pybites](https://twitter.com/pybites) when you post one of the created images on Twitter.
