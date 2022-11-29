@@ -38,9 +38,13 @@ def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
     options = Options()
     options.headless = not bool(kwargs.get("interactive", False))
+
     destination = kwargs.get("destination", os.getcwd())
     prefs = {"download.default_directory": destination}
     options.add_experimental_option("prefs", prefs)
+
+    if kwargs.get("disable-dev-shm", False):
+        options.add_argument("disable-dev-shm-usage")
 
     url = _create_carbon_url(code, **kwargs)
     with webdriver.Chrome(kwargs["driver_path"], options=options) as driver:
