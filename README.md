@@ -10,18 +10,6 @@ You can get it from PyPI:
 pip install pybites-carbon
 ```
 
-## Required driver
-
-You need to download the [ChromeDriver](https://chromedriver.chromium.org/) (same version as your Chrome browser) and make it available in your environment:
-
-```
-export DRIVER_PATH=$HOME/bin/chromedriver
-```
-
-To run this automatically upon starting a new shell, add this line to your `.zshrc` or `.bashrc` file.
-
-TODO: Chrome might not be the best tool anymore, see [this issue](https://github.com/PyBites-Open-Source/pybites-carbon/issues/9) to compare to Selenium / Firefox or Playwright ...
-
 ## Slow internet
 
 If you have a slow internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
@@ -142,10 +130,9 @@ I added this alias to my `.zshrc` to make it even easier:
 
 Make a virtual environment and install the `requirements-dev.txt` file or just run `make setup`.
 
-Download the [ChromeDriver](https://chromedriver.chromium.org/), and extract it in a folder, then set it's full path in `.env`, for example:
-
+Also install Tesseract itself. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
 ```
-echo "DRIVER_PATH=$HOME/bin/chromedriver" > .env
+sudo apt install tesseract-ocr
 ```
 
 Again you can increase the time the script takes to download the image, in case you have a slower internet connection:
