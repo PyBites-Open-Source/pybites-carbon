@@ -29,7 +29,7 @@ def python_kwargs() -> dict:
         "background": "#ABB8C3",
         "theme": "seti",
         "wt": "sharp",
-        "driver_path": "chromedriver",
+        "driver_path": None,
     }
 
 
