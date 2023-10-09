@@ -5,6 +5,7 @@ from urllib.parse import quote_plus
 from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
 load_dotenv()
@@ -37,7 +38,14 @@ def _create_carbon_url(code, **carbon_options: str) -> str:
 def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
     options = Options()
-    options.headless = not bool(kwargs.get("interactive", False))
+    if not bool(kwargs.get("interactive", False)):
+        options.add_argument("--headless")
+
+    service = (
+        Service(executable_path=kwargs["driver_path"])
+        if kwargs["driver_path"]
+        else Service()
+    )
 
     destination = kwargs.get("destination", os.getcwd())
     prefs = {"download.default_directory": destination}
@@ -47,7 +55,7 @@ def create_code_image(code: str, **kwargs: str) -> None:
         options.add_argument("disable-dev-shm-usage")
 
     url = _create_carbon_url(code, **kwargs)
-    with webdriver.Chrome(kwargs["driver_path"], options=options) as driver:
+    with webdriver.Chrome(service=service, options=options) as driver:
         driver.get(url)
         driver.find_element(By.ID, "export-menu").click()
         driver.find_element(By.ID, "export-png").click()
