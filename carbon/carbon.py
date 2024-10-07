@@ -65,17 +65,13 @@ def create_code_image(code: str, **kwargs: str) -> None:
         url = _create_carbon_url(code, **kwargs)
         page.goto(url)
 
-        def handle_download(download):
-            download_path = os.path.join(destination, "carbon_image.png")
-            download.save_as(download_path)
-            print(f"Downloaded to {download_path}")
-
-        # Add download event listener
-        page.on("download", handle_download)
-
         page.click("#export-menu")
         page.click("#export-png")
 
+        download = page.wait_for_event("download")
+        download_path = os.path.join(destination, "carbon_image.png")
+        download.save_as(download_path)
+        
         sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
 
         browser.close()
