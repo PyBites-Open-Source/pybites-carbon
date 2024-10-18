@@ -14,6 +14,7 @@ dependencies = [
 
 [tool.uv]
 dev-dependencies = [
+    "mypy>=1.12.0",
     "pytest-playwright>=0.5.2",
     "ruff>=0.7.0",
 ]
