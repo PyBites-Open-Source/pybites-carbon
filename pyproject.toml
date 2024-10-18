@@ -1,34 +1,19 @@
-[build-system]
-requires = ["flit_core >=3.2,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
 name = "pybites-carbon"
-authors = [{name = "Bob Belderbos", email = "bob@pybit.es"}]
+version = "0.2.0"
+authors = [{name = "Pybites", email = "info@pybit.es"}]
+description = "Create code images from CLI using carbon"
 readme = "README.md"
-requires-python = ">=3.7"
-classifiers = ["License :: OSI Approved :: MIT License"]
-dynamic = ["version", "description"]
+license = "LICENSE"
+requires-python = ">=3.10"
 dependencies = [
-    "pyperclip==1.8.2",
-    "pytest-playwright>=0.3.3",
-    "python-dotenv==0.21.0",
-    "selenium==4.6.1",
+    "playwright>=1.47.0",
+    "pyperclip>=1.9.0",
+    "python-dotenv>=1.0.1",
 ]
 
-[tool.flit.module]
-name = "carbon"
-
-[project.optional-dependencies]
-test = [
-    "pytest",
-    "mypy",
-    "flake8",
+[tool.uv]
+dev-dependencies = [
+    "pytest-playwright>=0.5.2",
+    "ruff>=0.7.0",
 ]
-
-[project.urls]
-Documentation = "https://www.youtube.com/watch?v=oxeGhlJQll8"
-Source = "https://github.com/bbelderbos/pybites-carbon"
-
-[project.scripts]
-carbon = "carbon.__main__:main"
