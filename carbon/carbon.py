@@ -4,10 +4,6 @@ from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
-# from selenium import webdriver
-# from selenium.webdriver.chrome.options import Options
-# from selenium.webdriver.chrome.service import Service
-# from selenium.webdriver.common.by import By
 
 load_dotenv()
 
@@ -38,24 +34,9 @@ def _create_carbon_url(code, **carbon_options: str) -> str:
 
 def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
-    # options = Options()
-    # if not bool(kwargs.get("interactive", False)):
-    #     options.add_argument("--headless")
-
-    # service = (
-    #     Service(executable_path=kwargs["driver_path"])
-    #     if kwargs["driver_path"]
-    #     else Service()
-    # )
-
     destination = kwargs.get("destination", os.getcwd())
     prefs = {"download.default_directory": destination}
-    # options.add_experimental_option("prefs", prefs)
     
-
-    if kwargs.get("disable-dev-shm", False):
-        options.add_argument("disable-dev-shm-usage")
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         
@@ -75,10 +56,3 @@ def create_code_image(code: str, **kwargs: str) -> None:
         sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
 
         browser.close()
-
-    # with webdriver.Chrome(service=service, options=options) as driver:
-        # driver.get(url)
-        # driver.find_element(By.ID, "export-menu").click()
-        # driver.find_element(By.ID, "export-png").click()
-        # make sure it has time to download the image
-        
