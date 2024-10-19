@@ -35,24 +35,20 @@ def _create_carbon_url(code, **carbon_options: str) -> str:
 def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
     destination = kwargs.get("destination", os.getcwd())
-    prefs = {"download.default_directory": destination}
+    headless = kwargs.get("headless", True)
     
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
-        
-        context = browser.new_context()
-        
-        page = context.new_page()
-        url = _create_carbon_url(code, **kwargs)
-        page.goto(url)
+        with p.chromium.launch(headless=headless) as browser:
+            context = browser.new_context()
+            page = context.new_page()
+            url = _create_carbon_url(code, **kwargs)
+            page.goto(url)
 
-        page.click("#export-menu")
-        page.click("#export-png")
+            page.click("#export-menu")
+            page.click("#export-png")
 
-        download = page.wait_for_event("download")
-        download_path = os.path.join(destination, "carbon_image.png")
-        download.save_as(download_path)
-        
-        sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
-
-        browser.close()
+            download = page.wait_for_event("download")
+            download_path = os.path.join(destination, "carbon_image.png")
+            download.save_as(download_path)
+            
+            sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
