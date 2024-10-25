@@ -1,7 +1,4 @@
--r requirements.txt
-pytest
-pytesseract
-mypy
-flit
-flake8
-pre-commit
+mypy>=1.12.0
+pytesseract>=0.3.13
+pytest-playwright>=0.5.2
+ruff>=0.7.0
