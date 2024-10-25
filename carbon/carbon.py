@@ -1,5 +1,4 @@
 import os
-from time import sleep
 from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
@@ -11,9 +10,6 @@ CARBON_URL = (
     "https://carbon.now.sh?l={language}&code={code}"
     "&bg={background}&t={theme}&wt={wt}"
 )
-
-# in case of a slow connection it might take a bit longer to download the image
-SECONDS_SLEEP_BEFORE_DOWNLOAD = int(os.environ.get("SECONDS_SLEEP_BEFORE_DOWNLOAD", 3))
 
 
 def _create_carbon_url(code, **carbon_options: str) -> str:
@@ -36,7 +32,7 @@ def create_code_image(code: str, **kwargs: str) -> None:
     """Generate a beautiful Carbon code image"""
     destination = kwargs.get("destination", os.getcwd())
     headless = kwargs.get("headless", True)
-    
+
     with sync_playwright() as p:
         with p.chromium.launch(headless=headless) as browser:
             context = browser.new_context()
@@ -50,5 +46,3 @@ def create_code_image(code: str, **kwargs: str) -> None:
             download = page.wait_for_event("download")
             download_path = os.path.join(destination, "carbon_image.png")
             download.save_as(download_path)
-            
-            sleep(SECONDS_SLEEP_BEFORE_DOWNLOAD)
