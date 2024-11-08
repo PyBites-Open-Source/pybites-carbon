@@ -10,14 +10,6 @@ You can get it from PyPI:
 pip install pybites-carbon
 ```
 
-## Slow internet
-
-If you have a slow internet connection you can optionally set `SECONDS_SLEEP_BEFORE_DOWNLOAD` to a value higher than the default `3`. This is the time the script waits between clicking on "export image" and closing the driver connection to the carbon site (ending the script).
-
-```
-export SECONDS_SLEEP_BEFORE_DOWNLOAD=10
-```
-
 ## Usage
 
 You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image. Lastly, this tool uses Selenium in _headless_ mode, to see what it does in the foreground, use `-i` (or `--interactive`).
@@ -128,26 +120,21 @@ I added this alias to my `.zshrc` to make it even easier:
 
 ## Developer setup
 
-Make a virtual environment and install the `requirements-dev.txt` file or just run `make setup`.
-
-Also install Tesseract itself. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
+1. Make a virtual environment
+2. Install packages
+	- Install with pip via `pip install requirements-dev.txt`.
+	- Install with Makefile by running `make setup`.
+	- Install with the [uv package manager](https://docs.astral.sh/uv/) by installing uv and then running `uv sync`.
+3. Install Tesseract. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
 ```
 sudo apt install tesseract-ocr
 ```
 
-Again you can increase the time the script takes to download the image, in case you have a slower internet connection:
-
-```
-echo "SECONDS_SLEEP_BEFORE_DOWNLOAD=10" >> .env
-```
-
-(`>>` means append (not override) to an existing file)
-
-The script uses Selenium in _headless mode_. The resulting `carbon.png` image will be downloaded to your computer unless you specify a different destination directory using `-d` (or `--destination`).
+The resulting `carbon_image.png` image will be downloaded to your current directory unless you specify a different destination directory using `-d` (or `--destination`).
 
 To run the tests, type `pytest` or `make test` (it uses `pytesseract` - in the dev requirements - to read the text from the generated carbon image file).
 
-We recommend running [`black`](https://black.readthedocs.io/en/stable/) before committing code. To set this up run this after checking out the repo:
+We recommend running [`ruff`](https://docs.astral.sh/ruff/) before committing code. To set this up run this after checking out the repo:
 
 ```
 $ pre-commit install
