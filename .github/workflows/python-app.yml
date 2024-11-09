@@ -31,8 +31,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements-dev.txt
 
-    - name: Lint with Ruff
-      uses: astral-sh/ruff-action@v1
+    - name: Run Ruff
+      run: ruff check --output-format=github .
 
     - name: Ensure browsers are installed for playwright
       run: python -m playwright install --with-deps chromium
