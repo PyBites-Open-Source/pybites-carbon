@@ -9,7 +9,6 @@ on:
       - main
       - develop
       - development
-      - 2024-11-08-GHworkflow
   pull_request:
     branches:
       - develop
