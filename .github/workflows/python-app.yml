@@ -8,6 +8,7 @@ on:
     branches:
       - main
       - develop
+      - development
   pull_request:
     branches:
       - develop
@@ -18,22 +19,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+    - uses: actions/checkout@v4
+
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v5
       with:
-        python-version: 3.9
+        python-version: "3.10"
+
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        version: "0.5.1"
+
     - name: Install dependencies
       run: |
         sudo apt update && sudo apt install tesseract-ocr libtesseract-dev
-        python -m pip install --upgrade pip
-        pip install -r requirements-dev.txt
-    - name: Lint with flake8
-      run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        uv sync --all-extras --dev
+
+    - name: Run Ruff
+      run: uv run ruff check --output-format=github .
+
+    - name: Ensure browsers are installed for playwright
+      run: uv run playwright install --with-deps chromium
+
     - name: Test with pytest
       run: |
-        pytest
+        uv run pytest
