@@ -1,6 +1,6 @@
 [project]
 name = "pybites-carbon"
-version = "0.2.0"
+version = "0.7.0"
 authors = [{name = "Pybites", email = "info@pybit.es"}]
 description = "Create code images from CLI using carbon"
 readme = "README.md"
