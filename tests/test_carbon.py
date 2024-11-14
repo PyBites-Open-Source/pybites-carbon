@@ -1,12 +1,12 @@
-from pathlib import Path
 import re
+from pathlib import Path
 
 import pytesseract
 import pytest
 
 from carbon.carbon import _create_carbon_url, create_code_image
 
-CARBON_DOWNLOAD_FILE = Path("carbon.png")
+CARBON_DOWNLOAD_FILE = Path("carbon_image.png")
 ONE_LINE_SNIPPET = """print('hello world')"""
 LONGER_CODE_SNIPPET = """
 @pytest.fixture(scope="session")
