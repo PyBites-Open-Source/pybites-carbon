@@ -4,15 +4,46 @@ A small utility to generate beautiful code images using [the awesome _carbon_ se
 
 ## Install
 
-You can get it from PyPI:
+### Install with pip
+Install from PyPI with pip.
+When using playwright, you must also download the browser binary. This package uses the chromium browser.
 
-```
+```shell
 pip install pybites-carbon
+
+playwright install
+# or only install chromium driver
+playwright install chromium
 ```
+
+### Install using uv package manager
+
+```shell
+uv add pybites-carbon
+# or add as a dev dependency
+uv add --dev pybites-carbon
+
+
+uv run playwright install
+# or only install chromium driver
+uv run playwright install chromium
+```
+
+### Install as a uv tool
+You can add the package to your `uv tool`
+
+```shell
+uv tool add pybites-carbon
+
+# But to use pybites-carbon as a tool, you should run it with the command below
+# because it clashes with another PyPI package called 'carbon'
+uv tool run --from pybites-carbon carbon
+```
+
 
 ## Usage
 
-You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image. Lastly, this tool uses Selenium in _headless_ mode, to see what it does in the foreground, use `-i` (or `--interactive`).
+You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image.
 
 ```
 $ carbon -h
@@ -28,7 +59,6 @@ options:
   -c, --clipboard       Use code on clipboard (default: None)
   -s CODE, --snippet CODE
                         Code snippet (default: None)
-  -i, --interactive     Run Selenium in interactive (not headless) mode (default: False)
   -l LANGUAGE, --language LANGUAGE
                         Programming language (default: python)
   -b BACKGROUND, --background BACKGROUND
@@ -120,15 +150,24 @@ I added this alias to my `.zshrc` to make it even easier:
 
 ## Developer setup
 
-1. Make a virtual environment
-2. Install packages
+1. Create virtual environment
+2. Install packages from the following options.
 	- Install with pip via `pip install requirements-dev.txt`.
 	- Install with Makefile by running `make setup`.
 	- Install with the [uv package manager](https://docs.astral.sh/uv/) by installing uv and then running `uv sync`.
-3. Install Tesseract. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
-```
-sudo apt install tesseract-ocr
-```
+3. Download and install browser binaries with playwright. You just need to download the chromium driver.
+
+	```shell
+	playwright install chromium
+
+	# if you're using uv package manager
+	uv playwright install chromium
+	```
+
+4. Install Tesseract. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
+	```
+	sudo apt install tesseract-ocr
+	```
 
 The resulting `carbon_image.png` image will be downloaded to your current directory unless you specify a different destination directory using `-d` (or `--destination`).
 
