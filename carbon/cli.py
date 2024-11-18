@@ -44,13 +44,6 @@ def get_args():
     group.add_argument("-s", "--snippet", help="Code snippet", dest="code")
 
     parser.add_argument(
-        "-i",
-        "--interactive",
-        action="store_true",
-        default=False,
-        help="Run Selenium in interactive (not headless) mode",
-    )
-    parser.add_argument(
         "-l", "--language", help="Programming language", default="python"
     )
     parser.add_argument(
@@ -66,7 +59,7 @@ def get_args():
     parser.add_argument("-w", "--wt", help="Windows control theme", default="sharp")
     parser.add_argument(
         "--driver-path",
-        help="Path to the executable. If it is not given it can read value from environment variable (DRIVER_PATH), otherwise driver will be downloaded by Selenium",
+        help="Path to the executable. If it is not given it can read value from environment variable (DRIVER_PATH)",
         **environ_or_none("DRIVER_PATH"),
     )
     return parser.parse_args()
