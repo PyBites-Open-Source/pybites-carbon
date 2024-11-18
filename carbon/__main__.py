@@ -8,7 +8,6 @@ def main():
         "language": args.language,
         "background": args.background,
         "theme": args.theme,
-        "interactive": args.interactive,
         "destination": args.destination,
         "wt": args.wt,
         "driver_path": args.driver_path,
