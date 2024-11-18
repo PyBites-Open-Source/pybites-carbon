@@ -10,7 +10,6 @@ def main():
         "theme": args.theme,
         "destination": args.destination,
         "wt": args.wt,
-        "driver_path": args.driver_path,
     }
     create_code_image(args.code, **options)
 
