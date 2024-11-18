@@ -2,17 +2,72 @@
 
 A small utility to generate beautiful code images using [the awesome _carbon_ service](https://carbon.now.sh/).
 
-## Install
+## Install Package
 
-You can get it from PyPI:
+### Install as a Standalone Tool using `uv tool` (Recommended)
+The [uv package manager](https://docs.astral.sh/uv/) is a "fast Python package and project manager."
 
+You can add the package to [uv tools](https://docs.astral.sh/uv/guides/tools/).
+
+When using playwright, you must also download the browser binary. This package specifically uses the chromium browser.
+
+```shell
+# Add package to your tools
+uv tool add pybites-carbon
+
+# Install playwright
+uv tool run playwright install chromium
+# Another way to install playwright. 'uvx' is a alias for 'uv tool run'
+uvx playwright install chromium
+
+# To use pybites-carbon as a tool, run it with the command below using the '--from' option
+# because it clashes with another PyPI package called 'carbon'
+uv tool run --from pybites-carbon carbon
+
+# Run using the 'uvx' alias
+uvx --from pybites-carbon carbon
 ```
+
+### Install as a Project Dependency using uv Package Manager
+
+If you already have a virtual environment and pyproject.toml file set up, ignore the first two steps.
+
+```shell
+# Create a new virtual environment
+uv venv
+
+# Create a new project
+uv init
+
+# Install package as project dependency
+uv add pybites-carbon
+# Install playwright browser
+uv run playwright install chromium
+```
+
+### Install with pip
+
+Install from PyPI using pip.
+
+```shell
+# Create a new virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# On macOS/Linux:
+source .venv/bin/activate
+
+# On Windows:
+.venv\Scripts\activate
+
+# Install packages
 pip install pybites-carbon
+playwright install chromium
 ```
 
 ## Usage
 
-You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image. Lastly, this tool uses Selenium in _headless_ mode, to see what it does in the foreground, use `-i` (or `--interactive`).
+You can load in code from a file, the clipboard or a snippet. You can change the language, the image background and theme. You can also provide a different directory to store the image.
 
 ```
 $ carbon -h
@@ -28,7 +83,6 @@ options:
   -c, --clipboard       Use code on clipboard (default: None)
   -s CODE, --snippet CODE
                         Code snippet (default: None)
-  -i, --interactive     Run Selenium in interactive (not headless) mode (default: False)
   -l LANGUAGE, --language LANGUAGE
                         Programming language (default: python)
   -b BACKGROUND, --background BACKGROUND
@@ -120,21 +174,44 @@ I added this alias to my `.zshrc` to make it even easier:
 
 ## Developer setup
 
-1. Make a virtual environment
-2. Install packages
-	- Install with pip via `pip install requirements-dev.txt`.
-	- Install with Makefile by running `make setup`.
-	- Install with the [uv package manager](https://docs.astral.sh/uv/) by installing uv and then running `uv sync`.
-3. Install Tesseract. Refer to their [instructions](https://github.com/tesseract-ocr/tesseract#installing-tesseract) for details or install on Ubuntu with:
-```
-sudo apt install tesseract-ocr
-```
+### Installation
+1. Clone or fork this repository
 
+2. Install packages using the following options.
+	- Install using the uv package manager (recommended).
+
+		`uv sync` also creates project virtual environment if it doesn't exist.
+		```shell
+		uv sync
+		uv playwright install chromium
+		```
+	- Install using pip.
+
+		Create a virtual environment and install packages using the requirements-dev.txt file.
+		```shell
+		python -m venv .venv
+		pip install requirements-dev.txt
+		playwright install chromium
+		```
+	- Install using the Makefile via `make setup`.
+
+3. Install Tesseract.
+
+	Refer to their [instructions on the GitHub repo](https://github.com/tesseract-ocr/tesseract#installing-tesseract) or the [documentation](https://tesseract-ocr.github.io/tessdoc/Installation.html) for details.
+
+	- Install on Ubuntu with:
+		```
+		sudo apt install tesseract-ocr
+		```
+
+	- Install on Windows following the [Mannheim University Library wiki](https://github.com/UB-Mannheim/tesseract/wiki).
+
+### Running pybites-carbon
 The resulting `carbon_image.png` image will be downloaded to your current directory unless you specify a different destination directory using `-d` (or `--destination`).
 
 To run the tests, type `pytest` or `make test` (it uses `pytesseract` - in the dev requirements - to read the text from the generated carbon image file).
 
-We recommend running [`ruff`](https://docs.astral.sh/ruff/) before committing code. To set this up run this after checking out the repo:
+We recommend running [`ruff`](https://docs.astral.sh/ruff/) before committing code. To set this up, run this after checking out the repo:
 
 ```
 $ pre-commit install

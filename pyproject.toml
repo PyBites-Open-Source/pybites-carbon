@@ -29,7 +29,6 @@ ignore = ["E501"]
 ignore_missing_imports = true
 
 [project.urls]
-Documentation = "https://www.youtube.com/watch?v=oxeGhlJQll8"
 Source = "https://github.com/PyBites-Open-Source/pybites-carbon"
 
 [project.scripts]
