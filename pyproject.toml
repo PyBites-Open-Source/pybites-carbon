@@ -34,3 +34,6 @@ Source = "https://github.com/PyBites-Open-Source/pybites-carbon"
 
 [project.scripts]
 carbon = "carbon.__main__:main"
+
+[tool.coverage.run]
+source = ["carbon"]
