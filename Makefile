@@ -1,18 +1,29 @@
+# default target
+.PHONY: all
+all: help setup lint typing test
+
+help:
+	#   Provided as a convience to run commands with uv
+	#   setup  - installs the necessary development dependencies.
+	#   lint   - lints the code
+	#   typing - checks the type hints
+	#   test   - tests the code
+
 .PHONY: setup
 setup:
-	python3 -m venv venv && source venv/bin/activate && pip install -r requirements-dev.txt
+	uv sync --dev
 
 .PHONY: lint
 lint:
-	flake8 --exclude venv
+	uv run ruff check .
 
 .PHONY: typing
 typing:
-	mypy carbon tests
+	uv run mypy carbon tests
 
 .PHONY: test
 test:
-	pytest
+	uv run pytest
 
 .PHONY: ci
 ci: lint test
