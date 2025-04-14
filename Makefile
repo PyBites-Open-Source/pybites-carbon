@@ -23,7 +23,7 @@ typing:
 
 .PHONY: test
 test:
-	uv run pytest
+	uv run pytest --cov --capture=tee-sys
 
 .PHONY: ci
 ci: lint test
