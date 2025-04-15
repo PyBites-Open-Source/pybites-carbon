@@ -93,9 +93,6 @@ options:
                         Specify folder where image should be stored (defaults to current directory) (default:
                         /Users/bbelderbos/code/pybites-carbon)
   -w WT, --wt WT        Windows control theme (default: sharp)
-  --driver-path DRIVER_PATH
-                        Path to the executable, if it is not given it reads value from environment variable
-                        (DRIVER_PATH) (default: /Users/bbelderbos/bin/chromedriver)
 ```
 
 ## Examples
@@ -183,7 +180,7 @@ I added this alias to my `.zshrc` to make it even easier:
 		`uv sync` also creates project virtual environment if it doesn't exist.
 		```shell
 		uv sync
-		uv playwright install chromium
+		uv run playwright install chromium
 		```
 	- Install using pip.
 
