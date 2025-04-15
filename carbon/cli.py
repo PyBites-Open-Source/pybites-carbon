@@ -3,7 +3,7 @@ import os
 
 import pyperclip
 
-from . import __version__ as version
+from . import version
 
 
 def get_code_from_file(filename: str) -> str:
@@ -27,7 +27,7 @@ def get_args():
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
     parser.add_argument(
-        "-v", "--version", action="version", version=f"%(prog)s {version}"
+        "-v", "--version", action="version", version=version
     )
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument(

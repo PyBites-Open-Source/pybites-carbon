@@ -434,7 +434,7 @@ wheels = [
 
 [[package]]
 name = "pybites-carbon"
-version = "0.7.1"
+version = "0.8.0"
 source = { virtual = "." }
 dependencies = [
     { name = "playwright" },

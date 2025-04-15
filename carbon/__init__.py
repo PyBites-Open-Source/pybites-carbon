@@ -1,3 +1,3 @@
-"""A package to automate making beautiful code snippets using Carbon"""
+from importlib.metadata import version
 
-__version__ = "0.7.1"
+version = version("pybites-carbon")
