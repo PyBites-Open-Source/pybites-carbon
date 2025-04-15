@@ -180,7 +180,7 @@ I added this alias to my `.zshrc` to make it even easier:
 		`uv sync` also creates project virtual environment if it doesn't exist.
 		```shell
 		uv sync
-		uv playwright install chromium
+		uv run playwright install chromium
 		```
 	- Install using pip.
 
