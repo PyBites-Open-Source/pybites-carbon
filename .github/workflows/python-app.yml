@@ -35,6 +35,7 @@ jobs:
       run: |
         sudo apt update && sudo apt install tesseract-ocr libtesseract-dev
         uv sync --all-extras --dev
+        uv pip install -e .
 
     - name: Run Ruff
       run: uv run ruff check --output-format=github .
